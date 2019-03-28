@@ -18,7 +18,50 @@ ExportedObj/
 *.tmp
 *.user
 *.userprefs
+*.pidb###
+# Unity folders and files
+###
+[Aa]scentV3/Assets/AssetStoreTools*
+[Aa]scentV3/Build/
+[Aa]scentV3/Library/
+[Aa]scentV3/Local/Cache/
+[Aa]scentV3/Obj/
+[Aa]scentV3/Temp/
+[Aa]scentV3/UnityGenerated/
+[Aa]scentV3/Assets/3D/
+[Aa]scentV3/Assets/Scenes/FX/
+# file on crash reports
+sysinfo.txt
+# Unity3D generated meta files
+*.pidb.meta
+
+
+###
+# VS/MD solution and project files
+###
+[Ee]xportedObj/
+*.booproj
+*.csproj
+*.sln
+*.suo
+*.svd
+*.unityproj
+*.user
+*.userprefs
 *.pidb
+.DS_Store
+
+###
+# OS generated
+###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
 *.booproj
 *.svd
 *.pdb

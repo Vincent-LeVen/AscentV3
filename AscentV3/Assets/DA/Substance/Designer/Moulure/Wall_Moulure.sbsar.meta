@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: 09fb0997f073df5439afe4722396b38b
+ScriptedImporter:
+  fileIDToRecycleName:
+    2100000: Wall_Moulure
+    2100002: Rock Variation
+    2800000: Wall_Moulure - baseColor
+    2800002: Wall_Moulure - normal
+    2800004: Wall_Moulure - metallic
+    2800006: Wall_Moulure - height
+    2800008: Wall_Moulure - ambientOcclusion
+    2800010: Wall_Moulure - roughness
+    2800012: Wall_Moulure - mask
+    11400000: sbsar
+    11400002: graph1
+    11400004: graph0
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
+  version: 17
+  mGraphInstanceData:
+  - graphLabel: Rock Variation
+    prototypeName: Rock Variation
+    graphDescIndex: 0
+    generateAllOutputs: 0
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://Stone_Variation\" label=\"\" >\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: 
+    texturePackingList:
+    - outputName: output
+      alphaSource: output
+    textureParameters:
+    - textureName: Rock Variation - UNKNOWN
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: output
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {instanceID: 0}
+    generatedTextures: []
+  - graphLabel: Wall_Moulure
+    prototypeName: Wall_Moulure
+    graphDescIndex: 1
+    generateAllOutputs: 1
+    generateMipMaps: 1
+    preset: " <sbspreset pkgurl=\"pkg://Wall_Moulure\" label=\"\" >\n </sbspreset>\n"
+    shaderName: Standard
+    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    texturePackingList:
+    - outputName: baseColor
+      alphaSource: baseColor
+    - outputName: normal
+      alphaSource: normal
+    - outputName: roughness
+      alphaSource: roughness
+    - outputName: metallic
+      alphaSource: smoothness
+    - outputName: height
+      alphaSource: height
+    - outputName: ambientOcclusion
+      alphaSource: ambientOcclusion
+    - outputName: mask
+      alphaSource: mask
+    textureParameters:
+    - textureName: Wall_Moulure - roughness
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Wall_Moulure - baseColor
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Wall_Moulure - normal
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Wall_Moulure - metallic
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Wall_Moulure - height
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Wall_Moulure - ambientOcclusion
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    - textureName: Wall_Moulure - mask
+      wrapMode: 0
+      filterMode: 1
+      aniso: 1
+    colorSpaceList:
+    - outputName: baseColor
+      bLinear: 0
+    - outputName: normal
+      bLinear: 1
+    - outputName: roughness
+      bLinear: 1
+    - outputName: metallic
+      bLinear: 1
+    - outputName: height
+      bLinear: 1
+    - outputName: ambientOcclusion
+      bLinear: 1
+    - outputName: mask
+      bLinear: 1
+    inputTextureMap: []
+    targetSettingList:
+    - label: 
+      bLockRatio: 1
+      textureWidth: 256
+      textureHeight: 256
+      textureFormat: 0
+      bGenerateOnLoad: 1
+    material: {fileID: 2100000, guid: 09fb0997f073df5439afe4722396b38b, type: 3}
+    generatedTextures: []

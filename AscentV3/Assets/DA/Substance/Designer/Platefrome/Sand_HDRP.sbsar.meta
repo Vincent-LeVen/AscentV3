@@ -24,9 +24,10 @@ ScriptedImporter:
     graphDescIndex: 0
     generateAllOutputs: 1
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://Sand\" label=\"\" >\n </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://Sand\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
+      uid=\"3011048941\" type=\"8\" value=\"11,11\" />\n </sbspreset>\n"
     shaderName: Standard
-    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    outputNames: 
     texturePackingList:
     - outputName: baseColor
       alphaSource: baseColor
@@ -90,8 +91,8 @@ ScriptedImporter:
     targetSettingList:
     - label: 
       bLockRatio: 1
-      textureWidth: 256
-      textureHeight: 256
+      textureWidth: 2048
+      textureHeight: 2048
       textureFormat: 0
       bGenerateOnLoad: 1
     material: {fileID: 2100000, guid: 42f14b5d51b710244b0268232cd4bbee, type: 3}

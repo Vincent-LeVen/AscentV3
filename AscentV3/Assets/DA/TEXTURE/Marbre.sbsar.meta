@@ -23,9 +23,10 @@ ScriptedImporter:
     graphDescIndex: 0
     generateAllOutputs: 1
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://Marble\" label=\"\" >\n </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://Marble\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
+      uid=\"3998941830\" type=\"8\" value=\"11,11\" />\n </sbspreset>\n"
     shaderName: Standard
-    outputNames: baseColor,normal,metallic,height
+    outputNames: 
     texturePackingList:
     - outputName: baseColor
       alphaSource: baseColor
@@ -81,8 +82,8 @@ ScriptedImporter:
     targetSettingList:
     - label: 
       bLockRatio: 1
-      textureWidth: 256
-      textureHeight: 256
+      textureWidth: 2048
+      textureHeight: 2048
       textureFormat: 0
       bGenerateOnLoad: 1
     material: {fileID: 2100000, guid: e5846bc87e36f4c42b48da0bb2123add, type: 3}

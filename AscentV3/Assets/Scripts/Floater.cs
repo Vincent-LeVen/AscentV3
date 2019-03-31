@@ -35,7 +35,7 @@ public class Floater : MonoBehaviour
         
         //targetPos = new Vector3(Random.Range(-1.0f, 1.0f) + startingPos.x, Random.Range(-1.0f, 1.0f) + startingPos.y, Random.Range(-1.0f, 1.0f) + startingPos.z);
         //DOTween.To(() => transform.position, x => transform.position = x, targetPos, floatingRythme);
-        transform.DOShakePosition(floatingRythme, 20.3f, 0, 90, false, false).SetId(tweenerID);
+        transform.DOShakePosition(floatingRythme, 10.3f, 0, 50, false, false).SetId(tweenerID);
         DOTween.To(() => timer, x => timer = x, floatingRythme, floatingRythme).SetId(tweenerID);
     }
 }

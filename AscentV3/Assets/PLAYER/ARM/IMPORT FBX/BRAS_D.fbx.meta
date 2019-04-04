@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 4a8c7d8dfa4424fa0867a81f26a87148
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Effecteur_Randomisation
+    100004: Extrusion
+    100006: Extrusion_1
+    100008: Extrusion_10
+    100010: Extrusion_11
+    100012: Extrusion_12
+    100014: Extrusion_13
+    100016: Extrusion_14
+    100018: Extrusion_2
+    100020: Extrusion_3
+    100022: Extrusion_4
+    100024: Extrusion_5
+    100026: Extrusion_6
+    100028: Extrusion_7
+    100030: Extrusion_8
+    100032: Extrusion_9
+    100034: Fracture
+    100036: Joint_01
+    100038: Joint_02
+    100040: Joint_03
+    100042: Joint_04
+    100044: Joint_05
+    100046: Joint_05_end
+    100048: Joint_06
+    100050: Joint_07
+    100052: Joint_08
+    100054: Joint_08_end
+    100056: Joint_09
+    100058: Joint_10
+    100060: Joint_11
+    100062: Joint_11_end
+    100064: Joint_12
+    100066: Joint_13
+    100068: Joint_14
+    100070: Joint_14_end
+    100072: New character
+    100074: New_character
+    100076: Remesh
+    100078: Tore
+    100080: truc_qui_levit
+    400000: //RootNode
+    400002: Effecteur_Randomisation
+    400004: Extrusion
+    400006: Extrusion_1
+    400008: Extrusion_10
+    400010: Extrusion_11
+    400012: Extrusion_12
+    400014: Extrusion_13
+    400016: Extrusion_14
+    400018: Extrusion_2
+    400020: Extrusion_3
+    400022: Extrusion_4
+    400024: Extrusion_5
+    400026: Extrusion_6
+    400028: Extrusion_7
+    400030: Extrusion_8
+    400032: Extrusion_9
+    400034: Fracture
+    400036: Joint_01
+    400038: Joint_02
+    400040: Joint_03
+    400042: Joint_04
+    400044: Joint_05
+    400046: Joint_05_end
+    400048: Joint_06
+    400050: Joint_07
+    400052: Joint_08
+    400054: Joint_08_end
+    400056: Joint_09
+    400058: Joint_10
+    400060: Joint_11
+    400062: Joint_11_end
+    400064: Joint_12
+    400066: Joint_13
+    400068: Joint_14
+    400070: Joint_14_end
+    400072: New character
+    400074: New_character
+    400076: Remesh
+    400078: Tore
+    400080: truc_qui_levit
+    2100000: Mat
+    2100002: Remesh
+    4300000: Extrusion_8
+    4300002: Extrusion_7
+    4300004: Extrusion_5
+    4300006: Extrusion_4
+    4300008: Extrusion_14
+    4300010: Extrusion_13
+    4300012: Extrusion_12
+    4300014: Extrusion_10
+    4300016: Remesh
+    4300018: Tore
+    4300020: Extrusion_9
+    4300022: Extrusion_6
+    4300024: Extrusion_3
+    4300026: Extrusion_2
+    4300028: Extrusion_11
+    4300030: Extrusion_1
+    4300032: Extrusion
+    9500000: //RootNode
+    13700000: Extrusion
+    13700002: Extrusion_1
+    13700004: Extrusion_10
+    13700006: Extrusion_11
+    13700008: Extrusion_12
+    13700010: Extrusion_13
+    13700012: Extrusion_14
+    13700014: Extrusion_2
+    13700016: Extrusion_3
+    13700018: Extrusion_4
+    13700020: Extrusion_5
+    13700022: Extrusion_6
+    13700024: Extrusion_7
+    13700026: Extrusion_8
+    13700028: Extrusion_9
+    13700030: Remesh
+    13700032: Tore
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat
+    second: {fileID: 2100000, guid: b5b61da9b701c4d1b95dcff2307966ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Remesh
+    second: {fileID: 2100000, guid: 6e7d9de45b882453fbd77d1cf7a519d2, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

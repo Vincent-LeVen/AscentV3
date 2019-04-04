@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &316130012942155472
 Transform:
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316130012942155485}
   m_Enabled: 0
-  m_CastShadows: 2
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -384,6 +384,14 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 7f40ceb169a15a941a42ca83327d4b8c, type: 3}
       propertyPath: m_Name
       value: Plateforme24
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 7f40ceb169a15a941a42ca83327d4b8c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7f40ceb169a15a941a42ca83327d4b8c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7f40ceb169a15a941a42ca83327d4b8c, type: 3}
       propertyPath: m_LocalPosition.x

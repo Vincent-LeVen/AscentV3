@@ -478,7 +478,7 @@ public class PlayerController : MonoBehaviour {
         }
 		if (!wasOnGround && onGround) 
 		{
-			source.PlayOneShot (landSound, 0.8f);
+			source.PlayOneShot (landSound, 0.6f);
             fallLandingH = (int)transform.position.y;
             powerIsOnCd = false;
 
@@ -571,19 +571,19 @@ public class PlayerController : MonoBehaviour {
                 int soundChoice = Random.Range(1, 5);
                 if (soundChoice == 1)
                 {
-                    source.PlayOneShot(walkSound, Random.Range(0.15f, 0.25f));
+                    source.PlayOneShot(walkSound, Random.Range(0.10f, 0.20f));
                 }
                 else if (soundChoice == 2)
                 {
-                    source.PlayOneShot(walkSound2, Random.Range(0.15f, 0.25f));
+                    source.PlayOneShot(walkSound2, Random.Range(0.10f, 0.20f));
                 }
                 else if (soundChoice == 3)
                 {
-                    source.PlayOneShot(walkSound3, Random.Range(0.15f, 0.25f));
+                    source.PlayOneShot(walkSound3, Random.Range(0.10f, 0.20f));
                 }
                 else
                 {
-                    source.PlayOneShot(walkSound4, Random.Range(0.15f, 0.25f));
+                    source.PlayOneShot(walkSound4, Random.Range(0.10f, 0.20f));
                 }
                 walksoundPlayed = Time.time;
             }
@@ -640,7 +640,7 @@ public class PlayerController : MonoBehaviour {
                 rbPlayer.velocity = new Vector3(rbPlayer.velocity.x, -jumpForce, rbPlayer.velocity.z);
                 actualTimeJump = Time.time;
                 jumped = true;
-                source.PlayOneShot(jumpSound, 1.0f);
+                source.PlayOneShot(jumpSound, 0.6f);
             }
 
             if ((Input.GetKey("space") || Input.GetButton("Fire2")) && Time.time - actualTimeJump < maxTimeJump)
@@ -655,7 +655,7 @@ public class PlayerController : MonoBehaviour {
                 rbPlayer.velocity = new Vector3(rbPlayer.velocity.x, jumpForce, rbPlayer.velocity.z);
                 actualTimeJump = Time.time;
                 jumped = true;
-                source.PlayOneShot(jumpSound, 1.0f);
+                source.PlayOneShot(jumpSound, 0.6f);
             }
 
             if ((Input.GetKey("space") || Input.GetButton("Fire2")) && Time.time - actualTimeJump < maxTimeJump)
@@ -792,7 +792,7 @@ public class PlayerController : MonoBehaviour {
                     }
                     rbPlayer.AddForce(hit.normal * (speed / wallJumpReduction), ForceMode.VelocityChange);
                     doubleWalljumpCounter = true;
-                    source.PlayOneShot(jumpSound, 1.0f);
+                    source.PlayOneShot(jumpSound, 0.6f);
                     break;
                 }
             }

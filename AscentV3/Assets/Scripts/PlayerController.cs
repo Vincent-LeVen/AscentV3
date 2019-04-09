@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class PlayerController : MonoBehaviour {
+    private new Camera camera;
+    private GameObject camHolder;
     public CamMouseLook cam;
     public CameraShake cameraShakeCam;
     [HideInInspector] float timeLastDeath = 0f;
@@ -15,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     private float justDied = 0f;
 
     [SerializeField] GameObject cameraBase;
-    private Camera camera;
 
     [HideInInspector] public Vector3 spawnPoint;
 
@@ -73,19 +74,14 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector] public bool isSliding;
     private Vector3 slideVector;
     private bool wasOnGround;
-    private bool powerIsOnCd;
+    [HideInInspector] public bool powerIsOnCd;
     [HideInInspector] public int fallStartingH;
     [HideInInspector] public int fallLandingH;
     [SerializeField] private int maxFallHeight = 50;
-
     [HideInInspector] public int fallCounter = 0;
-    private Quaternion targetRotation;
-
     private Vector3 jumpStartPosition;
     [SerializeField] private bool alternateAirBuffer = false;
-
     [SerializeField] private CapsuleCollider myCapsuleCollider5H;
-
     [HideInInspector] public bool respawnUpsideDown = false;
     private bool fallingCheck;
     [HideInInspector] public float checkpointDirection;
@@ -95,19 +91,18 @@ public class PlayerController : MonoBehaviour {
     float aRotation = 0;
     float bRotation = 180;
 
-    private GameObject camHolder;
-
+    [SerializeField] private float spawnDirection;
     private float tiltTweenAngle = 0;
     private float slideTweenHeight = 0;
 
-    public int momentum = 0;
-    public float momentumForce = 0.50f;
+    [HideInInspector] public int momentum = 0;
+    [HideInInspector] public float momentumForce = 0.50f;
     private Vector3 atpPosition;
     private bool staticRotation = false;
 
     public Image fallingIndicator;
-    public Color fallingIndicatorAlpha;
-    private float bobValue = 0;
+    [HideInInspector] public Color fallingIndicatorAlpha;
+    
 
     [SerializeField] public int maxFallTime;
 
@@ -133,17 +128,11 @@ public class PlayerController : MonoBehaviour {
         fallingIndicator = GameObject.FindGameObjectWithTag("FallingIndicator").GetComponent<Image>();
         fallingIndicatorAlpha.a = 0f;
         fallingIndicator.color = fallingIndicatorAlpha;
-        targetRotation = transform.rotation;
-
-        //DOTween.To(() => tweenTest, x => tweenTest = x, 180, 0.8f);
-
-
+        //cam.mouseLook.x = spawnDirection;
     }
 
 	void Update ()
-	{
-        
-
+	{      
         if (canMove) 
 		{
 			Jumping ();
@@ -152,7 +141,7 @@ public class PlayerController : MonoBehaviour {
 
             HeadTilt();
 
-            if ((Input.GetKey(KeyCode.C) || Input.GetAxisRaw("Fire4")!=0 || Input.GetButton("Fire5")) && onGround)
+            if ((Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetAxisRaw("Fire4")!=0 || Input.GetButton("Fire5")) && onGround)
             {
                 isSliding = true;
             } else if (!slideFirstFrame && isSliding == true && ( !Input.GetKey(KeyCode.C) || Input.GetAxisRaw("Fire4") == 0))
@@ -230,19 +219,32 @@ public class PlayerController : MonoBehaviour {
             isAlenvers = true;
         }
         powerIsOnCd = true;
-        playerHolder.transform.position = this.transform.position;
-        transform.position = playerHolder.transform.position;
-        playerHolder.transform.eulerAngles = new Vector3(playerHolder.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, playerHolder.transform.rotation.eulerAngles.z);
-        cam.mouseLook.x = 0;
 
-        fallCounter = 0;
+        
+
         aRotation = 0;
         bRotation = 180;
+
+        float pRotation = transform.rotation.eulerAngles.y;       
+        playerHolder.transform.position = transform.position;      
+        transform.position = playerHolder.transform.position;
+        if (isAlenvers)
+        {
+            playerHolder.transform.eulerAngles = new Vector3(playerHolder.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -aRotation);
+
+        }
+        else
+        {
+            playerHolder.transform.eulerAngles = new Vector3(playerHolder.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -bRotation);
+        }
+        transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, pRotation, transform.rotation.eulerAngles.z);
+        cam.mouseLook.x = 0;
+        
+        fallCounter = 0;
         fallStartingH = (int)transform.position.y;
 
         DOTween.To(() => fallingIndicatorAlpha.a, x => fallingIndicatorAlpha.a = x, 0f, 0.25f); ;
         
-        Debug.Log("resetRotation");
         if (isAlenvers)
         {
             rbPlayer.velocity = new Vector3(rbPlayer.velocity.x,6f, rbPlayer.velocity.z);
@@ -409,9 +411,12 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (Input.GetKey (KeyCode.LeftShift)) 
 		{
-			speed = runSpeed;
-			timeBetweenSteps = 0.32f;
-		} 
+			//speed = runSpeed;
+			//timeBetweenSteps = 0.32f;
+
+            speed = walkSpeed;
+            timeBetweenSteps = 0.35f;
+        } 
 		else 
 		{
 			speed = walkSpeed;
@@ -473,20 +478,13 @@ public class PlayerController : MonoBehaviour {
         }
 		if (!wasOnGround && onGround) 
 		{
-			source.PlayOneShot (landSound, 0.4f);
+			source.PlayOneShot (landSound, 0.8f);
             fallLandingH = (int)transform.position.y;
             powerIsOnCd = false;
 
-            if ((fallStartingH - fallLandingH) >= maxFallHeight && !isAlenvers || dieOnLanding)
+            if (((fallStartingH - fallLandingH) >= maxFallHeight && !isAlenvers) || dieOnLanding || (-(fallStartingH - fallLandingH) >= maxFallHeight && isAlenvers))
             {
                 dieOnLanding = false;
-                Debug.Log("dieded fallDamage");
-                Death();
-            }
-            else if (-(fallStartingH - fallLandingH) >= maxFallHeight && isAlenvers)
-            {
-                dieOnLanding = false;
-                Debug.Log("dieded fallDamage");
                 Death();
             }
             else if (!Input.GetKey(KeyCode.C))
@@ -509,7 +507,7 @@ public class PlayerController : MonoBehaviour {
 		if (onGround) 
 		{
             fallingCheck = false;
-            translation = Input.GetAxisRaw ("Vertical") * ((speed * fadeSpeed) * groundSpeed);
+            translation = Input.GetAxisRaw ("Vertical") * ((speed * fadeSpeed)*groundSpeed);
 			straffe = Input.GetAxisRaw ("Horizontal") * (((speed * fadeSpeed)*groundSpeed) / speedDivisionStraffe);
 			translation *= Time.deltaTime;
 			straffe *= Time.deltaTime;
@@ -568,35 +566,26 @@ public class PlayerController : MonoBehaviour {
 				fadeSpeed = 0.5f;
 			}
 
-			if ((translation != 0f || straffe != 0f) && Time.time - walksoundPlayed > timeBetweenSteps)
-			{
-				int soundChoice = Random.Range (1, 5);
-				if (soundChoice == 1) {
-					source.PlayOneShot (walkSound, Random.Range(0.15f, 0.25f));
-				} else if (soundChoice == 2) {
-					source.PlayOneShot (walkSound2, Random.Range(0.15f, 0.25f));
-				}
-                  else if (soundChoice == 3)
+            if ((translation != 0f || straffe != 0f) && Time.time - walksoundPlayed > timeBetweenSteps)
+            {
+                int soundChoice = Random.Range(1, 5);
+                if (soundChoice == 1)
                 {
-                    source.PlayOneShot (walkSound3, Random.Range(0.15f, 0.25f));
+                    source.PlayOneShot(walkSound, Random.Range(0.15f, 0.25f));
                 }
-                  else {
-					source.PlayOneShot (walkSound4, Random.Range(0.15f, 0.25f));
-				}
-				walksoundPlayed = Time.time;
-
-               /* if (bobValue == 0f)
+                else if (soundChoice == 2)
                 {
-                    DOTween.To(() => bobValue, x => bobValue = x, 0.5f, timeBetweenSteps);
+                    source.PlayOneShot(walkSound2, Random.Range(0.15f, 0.25f));
                 }
-                else if (bobValue == 1f)
+                else if (soundChoice == 3)
                 {
-                    DOTween.To(() => bobValue, x => bobValue = x, -0.5f, timeBetweenSteps);
+                    source.PlayOneShot(walkSound3, Random.Range(0.15f, 0.25f));
                 }
-                else if (bobValue == -1f)
+                else
                 {
-                    DOTween.To(() => bobValue, x => bobValue = x, 0.5f, timeBetweenSteps);
-                } */                    
+                    source.PlayOneShot(walkSound4, Random.Range(0.15f, 0.25f));
+                }
+                walksoundPlayed = Time.time;
             }
             alternateAirBuffer = false;
             jumpStartPosition = transform.position;
@@ -624,7 +613,6 @@ public class PlayerController : MonoBehaviour {
 			force = transform.localToWorldMatrix.MultiplyVector (force);
 			rbPlayer.AddForce (force, ForceMode.VelocityChange);
 		}
-
         atpPosition = previousPosition;
 		previousPosition = transform.position;
 	}
@@ -652,7 +640,7 @@ public class PlayerController : MonoBehaviour {
                 rbPlayer.velocity = new Vector3(rbPlayer.velocity.x, -jumpForce, rbPlayer.velocity.z);
                 actualTimeJump = Time.time;
                 jumped = true;
-                source.PlayOneShot(jumpSound, 0.15f);
+                source.PlayOneShot(jumpSound, 1.0f);
             }
 
             if ((Input.GetKey("space") || Input.GetButton("Fire2")) && Time.time - actualTimeJump < maxTimeJump)
@@ -667,7 +655,7 @@ public class PlayerController : MonoBehaviour {
                 rbPlayer.velocity = new Vector3(rbPlayer.velocity.x, jumpForce, rbPlayer.velocity.z);
                 actualTimeJump = Time.time;
                 jumped = true;
-                source.PlayOneShot(jumpSound, 0.15f);
+                source.PlayOneShot(jumpSound, 1.0f);
             }
 
             if ((Input.GetKey("space") || Input.GetButton("Fire2")) && Time.time - actualTimeJump < maxTimeJump)
@@ -688,15 +676,11 @@ public class PlayerController : MonoBehaviour {
     {
         Vector3 vectorDirector;
         Vector3 vectorDirector2;
-
         bool hitRight = false;
-        bool hitLeft = false;
-        bool resetBob = false;
-        
+        bool hitLeft = false;    
 
         vectorDirector = transform.TransformDirection(new Vector3(1.5f, 0, 1.5f));
         vectorDirector2 = transform.TransformDirection(new Vector3(-1.5f, 0, 1.5f));
-
         RaycastHit hit;
 
         //Debug.DrawRay(transform.position, vectorDirector * 1, Color.red);
@@ -716,16 +700,6 @@ public class PlayerController : MonoBehaviour {
                 hitLeft = true;
             }
         }
-        
-       /* if ((!onGround || atpPosition == previousPosition) && bobValue != 0f && resetBob == false)
-        {
-            resetBob = true;
-            DOTween.To(() => bobValue, x => bobValue = x, 0f, timeBetweenSteps - 0.01f);
-        }
-        else if (bobValue == 0f)
-        {
-            resetBob = false;
-        }    */
 
         if (isAlenvers && !rotatePlayer && !isSliding)
         {
@@ -751,18 +725,18 @@ public class PlayerController : MonoBehaviour {
                 {
                     DOTween.To(() => tiltTweenAngle, x => tiltTweenAngle = x, -180, 0.1f);
                 }
-                
+
                 camHolder.transform.eulerAngles = new Vector3(camHolder.transform.eulerAngles.x, camHolder.transform.eulerAngles.y, tiltTweenAngle);
             }
         }
         else if (!isAlenvers && !rotatePlayer && !isSliding)
-        {    
+        {
             if (hitLeft && !hitRight)
             {
                 if (tiltTweenAngle == 0 || tiltTweenAngle == -4)
                 {
                     DOTween.To(() => tiltTweenAngle, x => tiltTweenAngle = x, 4, 0.1f);
-                }                
+                }
                 camHolder.transform.eulerAngles = new Vector3(camHolder.transform.eulerAngles.x, camHolder.transform.eulerAngles.y, tiltTweenAngle);
             }
             else if (!hitLeft && hitRight)
@@ -779,16 +753,9 @@ public class PlayerController : MonoBehaviour {
                 {
                     DOTween.To(() => tiltTweenAngle, x => tiltTweenAngle = x, 0, 0.1f);
                 }
-                
                 camHolder.transform.eulerAngles = new Vector3(camHolder.transform.eulerAngles.x, camHolder.transform.eulerAngles.y, tiltTweenAngle);
             }
         }
-
-      /*  if (!hitRight && !hitLeft)
-        {
-        camHolder.transform.eulerAngles = new Vector3(camHolder.transform.eulerAngles.x, camHolder.transform.eulerAngles.y, bobValue);
-        }*/
-       
     }
         
 	private void WallJumping()
@@ -825,7 +792,7 @@ public class PlayerController : MonoBehaviour {
                     }
                     rbPlayer.AddForce(hit.normal * (speed / wallJumpReduction), ForceMode.VelocityChange);
                     doubleWalljumpCounter = true;
-                    source.PlayOneShot(jumpSound, 0.15f);
+                    source.PlayOneShot(jumpSound, 1.0f);
                     break;
                 }
             }

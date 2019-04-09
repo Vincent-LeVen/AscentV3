@@ -32,6 +32,7 @@ public class CamMouseLook : MonoBehaviour {
         }
         //Debug.Log (mouseDelta);
 
+
         mouseDelta = Vector2.Scale (mouseDelta, new Vector2 (sensitivity , sensitivity ));
 		mouseLook += mouseDelta;
 		transform.localRotation = Quaternion.AngleAxis (-mouseLook.y, Vector3.right);
@@ -56,35 +57,31 @@ public class CamMouseLook : MonoBehaviour {
                 slideXMod = -60.0f;
                 mouseLook.x = slideInitialX + 60;
             }
-
             slideSecondX = -(slideInitialX - slideXMod);
         }
-            
 
         if (playerController.isAlenvers == true)
+        {
+            if (playerController.isSliding && !playerController.slideFirstFrame)
             {
-                if (playerController.isSliding && !playerController.slideFirstFrame)
-                {
-                    character.transform.localRotation = Quaternion.AngleAxis(slideSecondX , character.transform.up);
-                }
-                else
-                {
-                    character.transform.localRotation = Quaternion.AngleAxis(-mouseLook.x, character.transform.up);
-                }
+                character.transform.localRotation = Quaternion.AngleAxis(slideSecondX , character.transform.up);
             }
             else
             {
-                if (playerController.isSliding && !playerController.slideFirstFrame)
-                {
-                    character.transform.localRotation = Quaternion.AngleAxis(-slideSecondX, character.transform.up);
-                }
-                else
-                {                        
-                    character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-                }
+                character.transform.localRotation = Quaternion.AngleAxis(-mouseLook.x, character.transform.up);
             }
-
-        
+        }
+        else
+        {
+            if (playerController.isSliding && !playerController.slideFirstFrame)
+            {
+                character.transform.localRotation = Quaternion.AngleAxis(-slideSecondX, character.transform.up);
+            }
+            else
+            {                        
+                character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+            }
+        }     
         BlockView ();
 	}
 

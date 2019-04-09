@@ -76,9 +76,6 @@ public class CameraShake : MonoBehaviour
     {
         int fallFactor = playerController.fallStartingH - playerController.fallLandingH;
 
-        Debug.Log(fallFactor);
-
-
         if (fallFactor < 0)
         {
             fallFactor = -fallFactor;
@@ -104,9 +101,7 @@ public class CameraShake : MonoBehaviour
             shakeForce = 4;
             shakePos = new Vector3(resetPos.x, resetPos.y - 1.7f, resetPos.z);
         }
-
         DOTween.To(() => transform.localPosition, x => transform.localPosition = x, shakePos, 0.05f);
-
     }
 
 

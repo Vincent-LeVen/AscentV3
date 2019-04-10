@@ -14,7 +14,7 @@ public class LightManager : MonoBehaviour
     void Start()
     {
         LightTuto.SetActive(true);
-        LightExt.SetActive(false);
+        LightExt.SetActive(true);
         LightInt.SetActive(false);
         Wall.SetActive(false);
     }

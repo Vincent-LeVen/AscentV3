@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip landSound;
     [SerializeField] AudioClip spawnSound;
+    [SerializeField] AudioClip power1;
+    [SerializeField] AudioClip power2;
 
     private float walksoundPlayed;
     private float timeBetweenSteps;
@@ -102,7 +104,8 @@ public class PlayerController : MonoBehaviour {
 
     public Image fallingIndicator;
     [HideInInspector] public Color fallingIndicatorAlpha;
-    
+    private bool escaping;
+    public GameObject exitButton;
 
     [SerializeField] public int maxFallTime;
 
@@ -159,7 +162,25 @@ public class PlayerController : MonoBehaviour {
                 Death();
             }
 		}
-		if (Time.time - justDied > 0.1f && !isAlive) 
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!escaping)
+            {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            exitButton.SetActive(true);
+                escaping = true;
+            } else
+            {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            exitButton.SetActive(false);
+                escaping = false;
+            }
+        }
+
+        if (Time.time - justDied > 0.1f && !isAlive) 
 		{
 			isAlive = true;
             Debug.Log("Respawn");
@@ -176,7 +197,15 @@ public class PlayerController : MonoBehaviour {
 
         if ((Input.GetKeyDown(KeyCode.A)|| Input.GetMouseButtonDown(0) || Input.GetButton("Fire3") ) && !powerIsOnCd && !isSliding)
         {   
-            InitiateRotation();             
+            InitiateRotation();
+            if (isAlenvers)
+            {
+                source.PlayOneShot(power1, 1.0f);
+            }
+            else
+            {
+                source.PlayOneShot(power2, 1.0f);
+            }
         }        
         fallingIndicator.color = fallingIndicatorAlpha;
     }

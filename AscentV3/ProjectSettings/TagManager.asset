@@ -8,6 +8,7 @@ TagManager:
   - PlayerHolder
   - FallingIndicator
   - CamHolder
+  - KillZone
   layers:
   - Default
   - TransparentFX

@@ -7,12 +7,19 @@ public class RunStart : MonoBehaviour
     public bool a;
     private Animator Anim;
 
-
     void Start()
     {
         Anim = GetComponent<Animator>();
-        
+        Anim.SetBool("Looking", true);
+        StartCoroutine(Wait());
+    }
 
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSecondsRealtime(11.5f);
+        Anim.SetBool("Looking", false);
+        Debug.Log("isok");
+        StopCoroutine(Wait());
     }
 
     void Update()

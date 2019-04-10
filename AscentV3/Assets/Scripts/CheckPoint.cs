@@ -30,12 +30,12 @@ public class CheckPoint : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player" && !isActivated)
         {
-            //visualEffect1.enabled = !visualEffect1.enabled;
+            visualEffect1.enabled = !visualEffect1.enabled;
             isActivated = true;
             playerController.spawnPoint = myPos;
             playerController.respawnUpsideDown = checkpointIsUpsideDown;
             playerController.checkpointDirection = playerDirection;
-            //vfxInst = (GameObject)Instantiate(vfx2, visualEffect1.transform);
+            vfxInst = (GameObject)Instantiate(vfx2, visualEffect1.transform);
             Destroy(vfxInst, vfx2Duration);
         }
     }

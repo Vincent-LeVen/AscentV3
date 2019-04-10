@@ -215,8 +215,8 @@ MonoBehaviour:
   playerController: {fileID: 0}
   checkpointIsUpsideDown: 0
   playerDirection: 0
-  vfx2: {fileID: 0}
-  vfx2Duration: 0
+  vfx2: {fileID: 3780077321882902582, guid: 528fe5abf2f738f48963c360479b8d07, type: 3}
+  vfx2Duration: 1
 --- !u!65 &1643031600652200293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -388,6 +388,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718907863599890012, guid: a1aab912abbc08f4f976d55a51d3c051,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718907863599890015, guid: a1aab912abbc08f4f976d55a51d3c051,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1aab912abbc08f4f976d55a51d3c051, type: 3}
